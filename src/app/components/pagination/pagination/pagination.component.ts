@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PaginationConfiguration } from './pagination';
 
 @Component({
   selector: 'app-pagination',
@@ -9,33 +10,47 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './pagination.component.scss',
 })
 export class PaginationComponent {
-  @Input() configuration: any;
+  @Input() set configuration(configuration: PaginationConfiguration) {
+    if (configuration) {
+      this.pageConfiguration = configuration;
+      this.pagesVisible = this.visiblePages();
+      this.totalPagesCount = Math.ceil(this.pageConfiguration.totalItems / 10);
+      this.pagesVisible = this.visiblePages();
+    }
+  }
   @Output() onPageChange: EventEmitter<number>;
 
   totalPagesCount: number;
   pagesVisible: number[];
+  pageConfiguration: PaginationConfiguration;
 
   constructor() {
-    this.configuration = {
-      total: 100,
+    this.pageConfiguration = {
+      totalItems: 10,
       actualPage: 1,
-      limitPageShow: 5,
+      limitPagesVisible: 5,
     };
-    this.totalPagesCount = Math.ceil(this.configuration.total / 10);
-    this.pagesVisible = this.visiblePages();
+
     this.onPageChange = new EventEmitter();
+
+    this.totalPagesCount = Math.ceil(this.pageConfiguration.totalItems / 10);
+    this.pagesVisible = this.visiblePages();
   }
 
   visiblePages(): number[] {
     let startPage = Math.max(
       1,
-      this.configuration.actualPage - Math.floor(5 / 2),
+      this.pageConfiguration.actualPage -
+        Math.floor(this.pageConfiguration.limitPagesVisible / 2),
     );
 
-    let endPage = Math.min(this.configuration.total, startPage + 5 - 1);
+    let endPage = Math.min(
+      this.pageConfiguration.totalItems,
+      startPage + this.pageConfiguration.limitPagesVisible - 1,
+    );
 
     const differencePages =
-      this.totalPagesCount - this.configuration.actualPage;
+      this.totalPagesCount - this.pageConfiguration.actualPage;
 
     if (differencePages < 2) {
       startPage = startPage - (differencePages === 0 ? 2 : 1);
@@ -49,24 +64,24 @@ export class PaginationComponent {
   }
 
   next(): void {
-    if (this.configuration.actualPage < this.totalPagesCount) {
-      this.configuration.actualPage++;
+    if (this.pageConfiguration.actualPage < this.totalPagesCount) {
+      this.pageConfiguration.actualPage++;
       this.pagesVisible = this.visiblePages();
-      this.onPageChange.emit(this.configuration.actualPage);
+      this.onPageChange.emit(this.pageConfiguration.actualPage);
     }
   }
 
   previous() {
-    if (this.configuration.actualPage > 1) {
-      this.configuration.actualPage--;
+    if (this.pageConfiguration.actualPage > 1) {
+      this.pageConfiguration.actualPage--;
       this.pagesVisible = this.visiblePages();
-      this.onPageChange.emit(this.configuration.actualPage);
+      this.onPageChange.emit(this.pageConfiguration.actualPage);
     }
   }
 
   goToPage(page: number) {
-    this.configuration.actualPage = page;
+    this.pageConfiguration.actualPage = page;
     this.pagesVisible = this.visiblePages();
-    this.onPageChange.emit(this.configuration.actualPage);
+    this.onPageChange.emit(this.pageConfiguration.actualPage);
   }
 }

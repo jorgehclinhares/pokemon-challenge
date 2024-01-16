@@ -2,7 +2,7 @@
   <ul class="pagination">
     <li
       class="page-item"
-      [ngClass]="{ disabled: configuration.actualPage < 2 }"
+      [ngClass]="{ disabled: pageConfiguration.actualPage < 2 }"
       (click)="goToPage(1)"
     >
       <a class="page-link" aria-label="Previous">
@@ -11,7 +11,7 @@
     </li>
     <li
       class="page-item"
-      [ngClass]="{ disabled: configuration.actualPage < 2 }"
+      [ngClass]="{ disabled: pageConfiguration.actualPage < 2 }"
       (click)="previous()"
     >
       <a class="page-link" aria-label="Previous">
@@ -21,7 +21,7 @@
     @for (page of pagesVisible; track $index) {
       <li
         class="page-item"
-        [ngClass]="{ active: page === configuration.actualPage }"
+        [ngClass]="{ active: page === pageConfiguration.actualPage }"
         (click)="goToPage(page)"
       >
         <a class="page-link">{{ page }}</a>
@@ -29,7 +29,7 @@
     }
     <li
       class="page-item"
-      [ngClass]="{ disabled: configuration.actualPage === totalPagesCount }"
+      [ngClass]="{ disabled: pageConfiguration.actualPage === totalPagesCount }"
       (click)="next()"
     >
       <a class="page-link" aria-label="Next">
@@ -38,7 +38,7 @@
     </li>
     <li
       class="page-item"
-      [ngClass]="{ disabled: configuration.actualPage === totalPagesCount }"
+      [ngClass]="{ disabled: pageConfiguration.actualPage === totalPagesCount }"
       (click)="goToPage(totalPagesCount)"
     >
       <a class="page-link" aria-label="Next">

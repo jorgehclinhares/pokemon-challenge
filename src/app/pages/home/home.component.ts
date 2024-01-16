@@ -8,6 +8,7 @@ import { PokemonTypeClassDirective } from '../../directives/pokemon-type-class/p
 import { HeaderComponent } from '../../components/header/header/header.component';
 import { PaginationComponent } from '../../components/pagination/pagination/pagination.component';
 import { environment } from '../../../environments/environment.development';
+import { PaginationConfiguration } from '../../components/pagination/pagination/pagination';
 
 @Component({
   selector: 'app-home',
@@ -26,23 +27,33 @@ import { environment } from '../../../environments/environment.development';
 export class HomeComponent implements OnInit {
   private readonly limitPerPage: number = environment.paginationLimitPerPage;
   pokemons: PokemonDetail[];
+  paginationConfiguration: PaginationConfiguration;
 
   constructor(private pokemonApi: PokemonService) {
     this.pokemons = [];
+    this.paginationConfiguration = {
+      totalItems: 0,
+      actualPage: 100,
+      limitPagesVisible: 5,
+    };
   }
 
   ngOnInit(): void {
-    this.loadPokemon(0);
+    this.loadPokemon(1);
   }
 
   async loadPokemon(page: number) {
-    const offset = page * this.limitPerPage;
+    const offset = (page - 1) * this.limitPerPage;
     const params = { offset, limit: this.limitPerPage };
+
     this.pokemonApi
       .list(params)
       .pipe(take(1))
       .subscribe({
-        next: (response) => this.loadPokemonsDetails(response.results),
+        next: (response) => {
+          this.paginationConfiguration.totalItems = response.count;
+          this.loadPokemonsDetails(response.results);
+        },
         error: (error) => console.log(error),
       });
   }
