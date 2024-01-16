@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { DetailComponent } from './pages/detail/detail.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'pokemon/:pokemonName', component: DetailComponent },
+  { path: 'pokedex', component: HomeComponent },
+  { path: 'pokedex/:pokemonName', component: DetailComponent },
+  { path: '**', redirectTo: 'pokedex' },
 ];

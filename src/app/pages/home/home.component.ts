@@ -158,7 +158,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   openPageDetail(name: string): void {
-    this.router.navigateByUrl(`pokemon/${name}`);
+    this.router.navigateByUrl(`pokedex/${name}`);
   }
 
   ngOnDestroy(): void {
