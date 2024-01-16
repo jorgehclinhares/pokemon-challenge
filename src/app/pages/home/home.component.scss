@@ -1,24 +1,42 @@
 @import '../../../../node_modules/bootstrap/scss/functions';
 @import '../../../../node_modules/bootstrap/scss/variables';
 
+.header {
+  width: 100%;
+  background-color: $white;
+  position: fixed;
+  top: 0;
+  height: 70px;
+  z-index: 1;
+}
+
 .list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   box-sizing: border-box;
   gap: 16px;
-  padding: 16px 0;
+  padding-bottom: 100px;
+  padding-top: 100px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 
   .card {
-    flex: 1 0 calc(50% - 16px);
+    flex: 1 0 calc(100%);
     background-color: $white;
     box-sizing: border-box;
     border-radius: 16px;
     border: 0;
     cursor: pointer;
 
+    @media (min-width: 768px) {
+      flex: 1 0 calc(50% - 16px);
+    }
+
     &.normal {
-      background-color: $gray-100;
+      background-color: $gray-200;
       .box {
         background-color: $gray-400;
       }
@@ -45,6 +63,78 @@
       background-color: $teal-100;
       .box {
         background-color: $teal-400;
+      }
+    }
+    &.poison {
+      background-color: $purple-100;
+      .box {
+        background-color: $purple-400;
+      }
+    }
+    &.fairy {
+      background-color: $pink-100;
+      .box {
+        background-color: $pink-400;
+      }
+    }
+    &.psychic {
+      background-color: $pink-300;
+      .box {
+        background-color: $pink-500;
+      }
+    }
+    &.electric {
+      background-color: $yellow-100;
+      .box {
+        background-color: $yellow-400;
+      }
+    }
+    &.rock {
+      background-color: $gray-500;
+      .box {
+        background-color: $gray-600;
+      }
+    }
+    &.ice {
+      background-color: $cyan-100;
+      .box {
+        background-color: $cyan-400;
+      }
+    }
+    &.dragon {
+      background-color: $indigo-100;
+      .box {
+        background-color: $indigo-400;
+      }
+    }
+    &.ghost {
+      background-color: $purple-800;
+      .box {
+        background-color: $purple-900;
+      }
+    }
+    &.dark {
+      background-color: $gray-700;
+      .box {
+        background-color: $gray-800;
+      }
+    }
+    &.steel {
+      background-color: $gray-600;
+      .box {
+        background-color: $gray-700;
+      }
+    }
+    &.fighting {
+      background-color: $pink-100;
+      .box {
+        background-color: $pink-200;
+      }
+    }
+    &.ground {
+      background-color: $orange-400;
+      .box {
+        background-color: $orange-600;
       }
     }
 
@@ -111,4 +201,15 @@
       }
     }
   }
+}
+
+.pagination {
+  width: 100%;
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  height: 70px;
 }

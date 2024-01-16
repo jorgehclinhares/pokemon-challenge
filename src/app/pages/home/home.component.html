@@ -1,24 +1,31 @@
-<app-header></app-header>
-<div class="list">
-  @for (pokemon of pokemons; track pokemon.order) {
-    <div class="card" [appPokemonTypeClass]="pokemon.types[0].type.name">
-      <div class="card-body">
-        <div class="info">
-          <span class="number"># {{ pokemon.order | numberPokedex: 3 }}</span>
-          <h4>{{ pokemon.name }}</h4>
-          <div class="comments">
-            <span class="badge text-bg-light message"
-              >Comentário de teste para o componente de comentário</span
-            >
-            <span class="badge text-bg-light">+3</span>
+<div class="header shadow-lg">
+  <app-header></app-header>
+</div>
+<div class="container">
+  <div class="list">
+    @for (pokemon of pokemons; track pokemon.order) {
+      <div class="card" [appPokemonTypeClass]="pokemon.types[0].type.name">
+        <div class="card-body">
+          <div class="info">
+            <span class="number"># {{ pokemon.order | numberPokedex: 3 }}</span>
+            <h4>{{ pokemon.name }}</h4>
+            <div class="comments">
+              <span class="badge text-bg-light message"
+                >Comentário de teste para o componente de comentário</span
+              >
+              <span class="badge text-bg-light">+3</span>
+            </div>
+          </div>
+          <div class="box">
+            <img src="{{ pokemon.sprites.front_default }}" />
           </div>
         </div>
-        <div class="box">
-          <img src="{{ pokemon.sprites.front_default }}" />
-        </div>
       </div>
-    </div>
-  } @empty {
-    <li>There are no items.</li>
-  }
+    } @empty {
+      <li>There are no items.</li>
+    }
+  </div>
+</div>
+<div class="pagination shadow-lg">
+  <app-pagination (onPageChange)="onPageChange($event)"></app-pagination>
 </div>

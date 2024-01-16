@@ -6,6 +6,8 @@ import { NumberPokedexPipe } from '../../pipes/number-pokedex/number-pokedex.pip
 import { take } from 'rxjs';
 import { PokemonTypeClassDirective } from '../../directives/pokemon-type-class/pokemon-type-class.directive';
 import { HeaderComponent } from '../../components/header/header/header.component';
+import { PaginationComponent } from '../../components/pagination/pagination/pagination.component';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-home',
@@ -18,23 +20,24 @@ import { HeaderComponent } from '../../components/header/header/header.component
     NumberPokedexPipe,
     PokemonTypeClassDirective,
     HeaderComponent,
+    PaginationComponent,
   ],
 })
 export class HomeComponent implements OnInit {
-  private apiOffset: number;
+  private readonly limitPerPage: number = environment.paginationLimitPerPage;
   pokemons: PokemonDetail[];
 
   constructor(private pokemonApi: PokemonService) {
     this.pokemons = [];
-    this.apiOffset = 0;
   }
 
   ngOnInit(): void {
-    this.loadPokemon();
+    this.loadPokemon(0);
   }
 
-  async loadPokemon() {
-    const params = { offset: this.apiOffset, limit: 10 };
+  async loadPokemon(page: number) {
+    const offset = page * this.limitPerPage;
+    const params = { offset, limit: this.limitPerPage };
     this.pokemonApi
       .list(params)
       .pipe(take(1))
@@ -55,7 +58,7 @@ export class HomeComponent implements OnInit {
       this.pokemons = responses.map((pokemon) => {
         return {
           name: pokemon.name,
-          order: pokemon.order,
+          order: pokemon.id,
           weight: pokemon.weight,
           height: pokemon.height,
           abilities: pokemon.abilities,
@@ -76,5 +79,9 @@ export class HomeComponent implements OnInit {
           error: (error) => reject(error),
         });
     });
+  }
+
+  onPageChange(page: number) {
+    this.loadPokemon(page);
   }
 }

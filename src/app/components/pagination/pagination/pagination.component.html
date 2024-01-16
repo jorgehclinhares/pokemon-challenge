@@ -1,0 +1,49 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li
+      class="page-item"
+      [ngClass]="{ disabled: configuration.actualPage < 2 }"
+      (click)="goToPage(1)"
+    >
+      <a class="page-link" aria-label="Previous">
+        <span aria-hidden="true">&laquo;&laquo;</span>
+      </a>
+    </li>
+    <li
+      class="page-item"
+      [ngClass]="{ disabled: configuration.actualPage < 2 }"
+      (click)="previous()"
+    >
+      <a class="page-link" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    @for (page of pagesVisible; track $index) {
+      <li
+        class="page-item"
+        [ngClass]="{ active: page === configuration.actualPage }"
+        (click)="goToPage(page)"
+      >
+        <a class="page-link">{{ page }}</a>
+      </li>
+    }
+    <li
+      class="page-item"
+      [ngClass]="{ disabled: configuration.actualPage === totalPagesCount }"
+      (click)="next()"
+    >
+      <a class="page-link" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <li
+      class="page-item"
+      [ngClass]="{ disabled: configuration.actualPage === totalPagesCount }"
+      (click)="goToPage(totalPagesCount)"
+    >
+      <a class="page-link" aria-label="Next">
+        <span aria-hidden="true">&raquo;&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
