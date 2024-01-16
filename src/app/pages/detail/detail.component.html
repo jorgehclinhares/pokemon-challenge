@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="box" [appPokemonTypeClass]="pokemon.types[0].type.name">
+    @if (pokemon.sprites) {
+      <img
+        src="{{ pokemon.sprites.other.home.front_default }}"
+        class="sprite"
+      />
+    }
+  </div>
+  <h1>{{ pokemon.name }}</h1>
+  <h2 class="text-body-secondary">Nº{{ pokemon.order | numberPokedex: 3 }}</h2>
+  <div class="types">
+    @for (type of pokemon.types; track type.slot) {
+      <span class="badge" [appPokemonTypeClass]="type.type.name">{{
+        type.type.name
+      }}</span>
+    }
+  </div>
+  <div class="info">
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-body-secondary">Peso</h6>
+        <p class="card-text">{{ pokemon.weight / 10 }} Kg</p>
+      </div>
+    </div>
+
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-body-secondary">Altura</h6>
+        <p class="card-text">{{ pokemon.height / 10 }} m</p>
+      </div>
+    </div>
+
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-body-secondary">Habilidades</h6>
+        <p class="card-text">{{ pokemonAbilitiesText }}</p>
+      </div>
+    </div>
+  </div>
+</div>

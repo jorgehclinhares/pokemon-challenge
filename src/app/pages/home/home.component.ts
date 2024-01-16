@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon/pokemon.service';
-import { HttpClientModule } from '@angular/common/http';
 import {
   PokemonDetail,
   PokemonDetailResponse,
@@ -15,6 +14,7 @@ import { environment } from '../../../environments/environment.development';
 import { PaginationConfiguration } from '../../components/pagination/pagination/pagination';
 import { LikeComponent } from '../../components/like/like/like.component';
 import { PokemonServiceModule } from '../../services/pokemon/pokemon.service.module';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,13 +22,13 @@ import { PokemonServiceModule } from '../../services/pokemon/pokemon.service.mod
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   imports: [
-    HttpClientModule,
     NumberPokedexPipe,
     PokemonTypeClassDirective,
     HeaderComponent,
     PaginationComponent,
     LikeComponent,
     PokemonServiceModule,
+    RouterModule,
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -39,7 +39,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   emptySearch: boolean;
   searchMode: boolean;
 
-  constructor(private pokemonService: PokemonService) {
+  constructor(
+    private pokemonService: PokemonService,
+    private router: Router,
+  ) {
     this.pokemons = [];
     this.emptySearch = false;
     this.searchMode = false;
@@ -146,11 +149,13 @@ export class HomeComponent implements OnInit, OnDestroy {
               liked: false,
             },
           ];
-
-          console.log(query);
         },
         error: () => (this.emptySearch = true),
       });
+  }
+
+  openPageDetail(name: string): void {
+    this.router.navigateByUrl(`pokemon/${name}`);
   }
 
   ngOnDestroy(): void {

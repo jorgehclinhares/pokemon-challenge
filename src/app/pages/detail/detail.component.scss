@@ -1,0 +1,180 @@
+@import '../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../node_modules/bootstrap/scss/variables';
+
+.box {
+  min-height: 200px;
+  border-radius: 0 0 200px 200px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(0deg, $white 0%, $orange-400 100%);
+  padding: 24px 0;
+
+  &.normal {
+    background-color: $gray-600;
+    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+  }
+  &.fire {
+    background-color: $orange-600;
+    background: linear-gradient(0deg, $white 0%, $orange-600 100%);
+  }
+  &.grass {
+    background-color: $green-600;
+    background: linear-gradient(0deg, $white 0%, $green-600 100%);
+  }
+  &.water {
+    background-color: $blue-600;
+    background: linear-gradient(0deg, $white 0%, $blue-600 100%);
+  }
+  &.bug {
+    background-color: $teal-600;
+    background: linear-gradient(0deg, $white 0%, $teal-600 100%);
+  }
+  &.poison {
+    background-color: $purple-600;
+    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+  }
+  &.fairy {
+    background-color: $pink-600;
+    background: linear-gradient(0deg, $white 0%, $pink-600 100%);
+  }
+  &.psychic {
+    background-color: $pink-600;
+    background: linear-gradient(0deg, $white 0%, $pink-600 100%);
+  }
+  &.electric {
+    background-color: $yellow-600;
+    background: linear-gradient(0deg, $white 0%, $yellow-600 100%);
+  }
+  &.rock {
+    background-color: $gray-600;
+    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+  }
+  &.ice {
+    background-color: $cyan-600;
+    background: linear-gradient(0deg, $white 0%, $cyan-600 100%);
+  }
+  &.dragon {
+    background: linear-gradient(0deg, $white 0%, $indigo-600 100%);
+  }
+  &.ghost {
+    background-color: $purple-600;
+    background: linear-gradient(0deg, $white 0%, $purple-600 100%);
+  }
+  &.dark {
+    background-color: $gray-600;
+    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+  }
+  &.steel {
+    background-color: $gray-600;
+    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+  }
+  &.fighting {
+    background-color: $pink-600;
+    background: linear-gradient(0deg, $white 0%, $pink-600 100%);
+  }
+  &.flying {
+    background-color: $pink-600;
+    background: linear-gradient(0deg, $white 0%, $pink-600 100%);
+  }
+  &.ground {
+    background-color: $orange-600;
+    background: linear-gradient(0deg, $white 0%, $orange-600 100%);
+  }
+
+  .sprite {
+    height: 200px;
+  }
+}
+
+h1 {
+  margin: 24px 0 8px 0;
+  text-transform: capitalize;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.types {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 24px;
+  text-transform: capitalize;
+
+  .badge {
+    font-size: 16px;
+    border-radius: 24px;
+
+    &.normal {
+      background-color: $gray-600;
+    }
+    &.fire {
+      background-color: $orange-600;
+    }
+    &.grass {
+      background-color: $green-600;
+    }
+    &.water {
+      background-color: $blue-600;
+    }
+    &.bug {
+      background-color: $teal-600;
+    }
+    &.poison {
+      background-color: $purple-600;
+    }
+    &.fairy {
+      background-color: $pink-600;
+    }
+    &.psychic {
+      background-color: $pink-600;
+    }
+    &.electric {
+      background-color: $yellow-600;
+    }
+    &.rock {
+      background-color: $gray-600;
+    }
+    &.ice {
+      background-color: $cyan-600;
+    }
+    &.dragon {
+      background-color: $indigo-600;
+    }
+    &.ghost {
+      background-color: $purple-600;
+    }
+    &.dark {
+      background-color: $gray-600;
+    }
+    &.steel {
+      background-color: $gray-600;
+    }
+    &.fighting {
+      background-color: $pink-100;
+    }
+    &.flying {
+      background-color: $pink-600;
+    }
+    &.ground {
+      background-color: $orange-600;
+    }
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  .card {
+    width: 100%;
+    border: 0;
+  }
+}

@@ -39,7 +39,7 @@ export interface PokemonDetail {
   height: number;
   abilities: Ability[];
   types: Type[];
-  sprites: Sprites;
+  sprites: Sprites | undefined;
   liked: boolean;
 }
 

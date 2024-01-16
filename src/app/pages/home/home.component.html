@@ -4,10 +4,14 @@
 <div class="container">
   <div class="list">
     @for (pokemon of pokemons; track pokemon.order) {
-      <div class="card" [appPokemonTypeClass]="pokemon.types[0].type.name">
+      <div
+        class="card"
+        [appPokemonTypeClass]="pokemon.types[0].type.name"
+        (click)="openPageDetail(pokemon.name)"
+      >
         <div class="card-body">
           <div class="info">
-            <span class="number">#{{ pokemon.order | numberPokedex: 3 }}</span>
+            <span class="number">Nº{{ pokemon.order | numberPokedex: 3 }}</span>
             <h4>{{ pokemon.name }}</h4>
             <div class="comments">
               <span class="badge text-bg-light message"
@@ -23,7 +27,7 @@
             </span>
           </div>
           <div class="box">
-            <img src="{{ pokemon.sprites.front_default }}" />
+            <img src="{{ pokemon.sprites?.front_default }}" />
           </div>
         </div>
       </div>
