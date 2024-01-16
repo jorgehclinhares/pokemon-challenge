@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment.development';
+import { Observable, Subject } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 import { PokemonDetailResponse, PokemonListResponse } from './pokemon';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PokemonService {
   private apiUrl: string;
+  query: Subject<string>;
 
   constructor(private api: HttpClient) {
     this.apiUrl = environment.apiURL;
+    this.query = new Subject();
   }
 
   list(params: any): Observable<PokemonListResponse> {
@@ -24,5 +24,9 @@ export class PokemonService {
     return this.api.get<PokemonDetailResponse>(
       `${this.apiUrl}/pokemon/${name}`,
     );
+  }
+
+  emitSearch(query: string) {
+    this.query.next(query);
   }
 }

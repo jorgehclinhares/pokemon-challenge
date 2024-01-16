@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { PokemonService } from '../../services/pokemon.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PokemonService } from '../../services/pokemon/pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PokemonDetail, PokemonListResult } from '../../services/pokemon';
+import {
+  PokemonDetail,
+  PokemonDetailResponse,
+  PokemonListResult,
+} from '../../services/pokemon/pokemon';
 import { NumberPokedexPipe } from '../../pipes/number-pokedex/number-pokedex.pipe';
-import { take } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { PokemonTypeClassDirective } from '../../directives/pokemon-type-class/pokemon-type-class.directive';
 import { HeaderComponent } from '../../components/header/header/header.component';
 import { PaginationComponent } from '../../components/pagination/pagination/pagination.component';
 import { environment } from '../../../environments/environment.development';
 import { PaginationConfiguration } from '../../components/pagination/pagination/pagination';
 import { LikeComponent } from '../../components/like/like/like.component';
+import { PokemonServiceModule } from '../../services/pokemon/pokemon.service.module';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  providers: [PokemonService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   imports: [
@@ -24,15 +28,21 @@ import { LikeComponent } from '../../components/like/like/like.component';
     HeaderComponent,
     PaginationComponent,
     LikeComponent,
+    PokemonServiceModule,
   ],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   private readonly limitPerPage: number = environment.paginationLimitPerPage;
+  private searchUnsubscribe = new Subject<void>();
   pokemons: PokemonDetail[];
   paginationConfiguration: PaginationConfiguration;
+  emptySearch: boolean;
+  searchMode: boolean;
 
-  constructor(private pokemonApi: PokemonService) {
+  constructor(private pokemonService: PokemonService) {
     this.pokemons = [];
+    this.emptySearch = false;
+    this.searchMode = false;
     this.paginationConfiguration = {
       totalItems: 0,
       actualPage: 1,
@@ -42,13 +52,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPokemon(1);
+    this.searchOnChange();
   }
 
   async loadPokemon(page: number) {
     const offset = (page - 1) * this.limitPerPage;
     const params = { offset, limit: this.limitPerPage };
 
-    this.pokemonApi
+    this.pokemonService
       .list(params)
       .pipe(take(1))
       .subscribe({
@@ -83,9 +94,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  async loadPokemonDetail(name: string): Promise<any> {
+  async loadPokemonDetail(name: string): Promise<PokemonDetailResponse> {
     return new Promise((resolve, reject) => {
-      this.pokemonApi
+      this.pokemonService
         .detail(name)
         .pipe(take(1))
         .subscribe({
@@ -96,6 +107,7 @@ export class HomeComponent implements OnInit {
   }
 
   onPageChange(page: number): void {
+    this.paginationConfiguration.actualPage = page;
     this.loadPokemon(page);
   }
 
@@ -104,5 +116,45 @@ export class HomeComponent implements OnInit {
       (item) => pokemon.order === item.order,
     );
     this.pokemons[pokemonIndex].liked = liked;
+  }
+
+  searchOnChange() {
+    this.pokemonService.query
+      .pipe(takeUntil(this.searchUnsubscribe))
+      .subscribe({
+        next: async (query: string) => {
+          this.searchMode = true;
+
+          if (query === '') {
+            this.searchMode = false;
+            return this.loadPokemon(this.paginationConfiguration.actualPage);
+          }
+
+          const pokemon = await this.loadPokemonDetail(query);
+
+          this.emptySearch = false;
+
+          this.pokemons = [
+            {
+              name: pokemon.name,
+              order: pokemon.id,
+              weight: pokemon.weight,
+              height: pokemon.height,
+              abilities: pokemon.abilities,
+              types: pokemon.types,
+              sprites: pokemon.sprites,
+              liked: false,
+            },
+          ];
+
+          console.log(query);
+        },
+        error: () => (this.emptySearch = true),
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.searchUnsubscribe.next();
+    this.searchUnsubscribe.complete();
   }
 }

@@ -1,3 +1,7 @@
-<form>
-  <input class="form-control" placeholder="Pesquisar pokémon" />
+<form [formGroup]="form">
+  <input
+    class="form-control"
+    placeholder="Pesquisar pokémon"
+    formControlName="query"
+  />
 </form>

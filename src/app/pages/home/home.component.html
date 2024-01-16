@@ -32,7 +32,7 @@
     }
   </div>
 </div>
-@if (pokemons.length > 0) {
+@if (pokemons.length > 0 && searchMode === false) {
   <div class="pagination shadow-lg">
     <app-pagination
       [configuration]="paginationConfiguration"
