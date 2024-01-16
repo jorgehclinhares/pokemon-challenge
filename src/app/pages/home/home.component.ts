@@ -133,24 +133,27 @@ export class HomeComponent implements OnInit, OnDestroy {
             return this.loadPokemon(this.paginationConfiguration.actualPage);
           }
 
-          const pokemon = await this.loadPokemonDetail(query);
+          try {
+            const pokemon = await this.loadPokemonDetail(query);
+            this.emptySearch = false;
 
-          this.emptySearch = false;
-
-          this.pokemons = [
-            {
-              name: pokemon.name,
-              order: pokemon.id,
-              weight: pokemon.weight,
-              height: pokemon.height,
-              abilities: pokemon.abilities,
-              types: pokemon.types,
-              sprites: pokemon.sprites,
-              liked: false,
-            },
-          ];
+            this.pokemons = [
+              {
+                name: pokemon.name,
+                order: pokemon.id,
+                weight: pokemon.weight,
+                height: pokemon.height,
+                abilities: pokemon.abilities,
+                types: pokemon.types,
+                sprites: pokemon.sprites,
+                liked: false,
+              },
+            ];
+          } catch (err) {
+            this.pokemons = [];
+            this.emptySearch = true;
+          }
         },
-        error: () => (this.emptySearch = true),
       });
   }
 

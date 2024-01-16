@@ -31,8 +31,6 @@
           </div>
         </div>
       </div>
-    } @empty {
-      <li>There are no items.</li>
     }
   </div>
 </div>
@@ -42,5 +40,10 @@
       [configuration]="paginationConfiguration"
       (onPageChange)="onPageChange($event)"
     ></app-pagination>
+  </div>
+} @else if (pokemons.length === 0 && searchMode === true) {
+  <div class="not-found">
+    <img src="assets/images/margikarp-not-found.png" />
+    <h1>Não foi possível encontrar o Pokémon</h1>
   </div>
 }
