@@ -9,6 +9,7 @@ import { HeaderComponent } from '../../components/header/header/header.component
 import { PaginationComponent } from '../../components/pagination/pagination/pagination.component';
 import { environment } from '../../../environments/environment.development';
 import { PaginationConfiguration } from '../../components/pagination/pagination/pagination';
+import { LikeComponent } from '../../components/like/like/like.component';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ import { PaginationConfiguration } from '../../components/pagination/pagination/
     PokemonTypeClassDirective,
     HeaderComponent,
     PaginationComponent,
+    LikeComponent,
   ],
 })
 export class HomeComponent implements OnInit {
@@ -33,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.pokemons = [];
     this.paginationConfiguration = {
       totalItems: 0,
-      actualPage: 100,
+      actualPage: 1,
       limitPagesVisible: 5,
     };
   }
@@ -75,12 +77,13 @@ export class HomeComponent implements OnInit {
           abilities: pokemon.abilities,
           types: pokemon.types,
           sprites: pokemon.sprites,
+          liked: false,
         };
       });
     });
   }
 
-  async loadPokemonDetail(name: string) {
+  async loadPokemonDetail(name: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.pokemonApi
         .detail(name)
@@ -92,7 +95,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onPageChange(page: number) {
+  onPageChange(page: number): void {
     this.loadPokemon(page);
+  }
+
+  onLike(liked: boolean, pokemon: PokemonDetail): void {
+    const pokemonIndex = this.pokemons.findIndex(
+      (item) => pokemon.order === item.order,
+    );
+    this.pokemons[pokemonIndex].liked = liked;
   }
 }

@@ -1,0 +1,25 @@
+@import '../../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../../node_modules/bootstrap/scss/variables';
+
+.btn-primary {
+  color: $red-600;
+  border-radius: 8px;
+  border-radius: 25px;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  border-color: $white;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $red-600;
+    color: $white;
+  }
+}
+
+.liked {
+  background-color: $red-600;
+  color: $white;
+}

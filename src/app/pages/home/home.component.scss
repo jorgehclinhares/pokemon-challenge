@@ -141,12 +141,18 @@
     .card-body {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       padding: 0px;
 
       .info {
-        width: auto;
+        width: 100%;
         padding: 16px;
+        position: relative;
+
+        .like {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+        }
 
         h4 {
           font-weight: 600;
@@ -165,8 +171,6 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: 120px;
-        height: 120px;
         border-radius: 16px;
 
         img {
@@ -191,15 +195,15 @@
       }
     }
 
-    &:hover {
-      .card-body {
-        .box {
-          img {
-            height: 120px;
-          }
-        }
-      }
-    }
+    // &:hover {
+    //   .card-body {
+    //     .box {
+    //       img {
+    //         height: 120px;
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 
