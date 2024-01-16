@@ -1,0 +1,114 @@
+@import '../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../node_modules/bootstrap/scss/variables';
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: 16px;
+  padding: 16px 0;
+
+  .card {
+    flex: 1 0 calc(50% - 16px);
+    background-color: $white;
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 0;
+    cursor: pointer;
+
+    &.normal {
+      background-color: $gray-100;
+      .box {
+        background-color: $gray-400;
+      }
+    }
+    &.fire {
+      background-color: $orange-100;
+      .box {
+        background-color: $orange-400;
+      }
+    }
+    &.grass {
+      background-color: $green-100;
+      .box {
+        background-color: $green-400;
+      }
+    }
+    &.water {
+      background-color: $blue-100;
+      .box {
+        background-color: $blue-400;
+      }
+    }
+    &.bug {
+      background-color: $teal-100;
+      .box {
+        background-color: $teal-400;
+      }
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0px;
+
+      .info {
+        width: auto;
+        padding: 16px;
+
+        h4 {
+          font-weight: 600;
+          text-transform: capitalize;
+        }
+
+        .number {
+          font-size: 16px;
+          font-weight: 600;
+          color: $gray-700;
+        }
+      }
+
+      .box {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 120px;
+        border-radius: 16px;
+
+        img {
+          width: auto;
+          height: 100px;
+          transition: all 0.2s;
+        }
+      }
+
+      .comments {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+      }
+
+      .message {
+        width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-radius: 16px;
+      }
+    }
+
+    &:hover {
+      .card-body {
+        .box {
+          img {
+            height: 120px;
+          }
+        }
+      }
+    }
+  }
+}

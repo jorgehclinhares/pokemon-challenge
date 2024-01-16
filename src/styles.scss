@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import './bootstrap.styles.scss';
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: $white;
+}
