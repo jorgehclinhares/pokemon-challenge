@@ -1,23 +1,26 @@
-<div class="header shadow-lg">
+<div class="header shadow">
   <app-header></app-header>
 </div>
 <div class="container">
   <div class="list">
     @for (pokemon of pokemons; track pokemon.order) {
-      <div
-        class="card"
-        [appPokemonTypeClass]="pokemon.types[0].type.name"
-        (click)="openPageDetail(pokemon.name)"
-      >
+      <div class="card" [appPokemonTypeClass]="pokemon.types[0].type.name">
         <div class="card-body">
           <div class="info">
             <span class="number">Nº{{ pokemon.order | numberPokedex: 3 }}</span>
             <h4>{{ pokemon.name }}</h4>
-            <div class="comments">
-              <span class="badge text-bg-light message"
-                >Comentário de teste para o componente de comentário</span
-              >
-              <span class="badge text-bg-light">+3</span>
+            <div class="comments" (click)="openModalComment(pokemon)">
+              <span class="text-bg-light message">
+                <i
+                  class="bi"
+                  [ngClass]="{
+                    'bi-chat-fill': pokemon.comment.message !== '',
+                    'bi-chat': pokemon.comment.message === ''
+                  }"
+                ></i>
+                {{ pokemon.comment.message || 'Nenhum comentário adicionado' }}
+              </span>
+              <i class="bi bi-chevron-right"></i>
             </div>
             <span class="like">
               <app-like
@@ -26,6 +29,7 @@
               ></app-like>
             </span>
           </div>
+
           <div class="box">
             <img src="{{ pokemon.sprites?.front_default }}" />
           </div>
@@ -35,7 +39,7 @@
   </div>
 </div>
 @if (pokemons.length > 0 && searchMode === false) {
-  <div class="pagination shadow-lg">
+  <div class="pagination shadow">
     <app-pagination
       [configuration]="paginationConfiguration"
       (onPageChange)="onPageChange($event)"
@@ -44,6 +48,15 @@
 } @else if (pokemons.length === 0 && searchMode === true) {
   <div class="not-found">
     <img src="assets/images/margikarp-not-found.png" />
-    <h1>Não foi possível encontrar o Pokémon</h1>
+    <h2>Não foi possível encontrar o Pokémon</h2>
   </div>
+}
+
+@if (showCommentModal && commentModalPokemon) {
+  <app-comment
+    [pokemon]="commentModalPokemon"
+    (onAddComment)="addComent($event)"
+    (onDeleteComment)="deleteComment($event)"
+    (onModalClose)="closeCommentModal()"
+  ></app-comment>
 }

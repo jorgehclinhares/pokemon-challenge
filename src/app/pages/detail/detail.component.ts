@@ -37,6 +37,10 @@ export class DetailComponent implements OnInit {
       types: [],
       sprites: undefined,
       liked: false,
+      comment: {
+        name: '',
+        message: '',
+      },
     };
   }
 
@@ -64,6 +68,10 @@ export class DetailComponent implements OnInit {
             types: pokemon.types,
             sprites: pokemon.sprites,
             liked: false,
+            comment: {
+              name: '',
+              message: '',
+            },
           };
         },
       });

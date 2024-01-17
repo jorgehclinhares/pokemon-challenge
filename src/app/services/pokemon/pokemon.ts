@@ -41,6 +41,12 @@ export interface PokemonDetail {
   types: Type[];
   sprites: Sprites | undefined;
   liked: boolean;
+  comment: PokemonDetailComment;
+}
+
+export interface PokemonDetailComment {
+  name: string;
+  message: string;
 }
 
 export interface Ability {
