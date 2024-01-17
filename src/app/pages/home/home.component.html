@@ -1,43 +1,24 @@
+<!-- header -->
 <div class="header shadow">
   <app-header></app-header>
 </div>
+
+<!-- main list -->
 <div class="container">
   <div class="list">
     @for (pokemon of pokemons; track pokemon.order) {
-      <div class="card" [appPokemonTypeClass]="pokemon.types[0].type.name">
-        <div class="card-body">
-          <div class="info">
-            <span class="number">Nº{{ pokemon.order | numberPokedex: 3 }}</span>
-            <h4>{{ pokemon.name }}</h4>
-            <div class="comments" (click)="openModalComment(pokemon)">
-              <span class="text-bg-light message">
-                <i
-                  class="bi"
-                  [ngClass]="{
-                    'bi-chat-fill': pokemon.comment.message !== '',
-                    'bi-chat': pokemon.comment.message === ''
-                  }"
-                ></i>
-                {{ pokemon.comment.message || 'Nenhum comentário adicionado' }}
-              </span>
-              <i class="bi bi-chevron-right"></i>
-            </div>
-            <span class="like">
-              <app-like
-                [liked]="pokemon.liked"
-                (onLike)="onLike($event, pokemon)"
-              ></app-like>
-            </span>
-          </div>
-
-          <div class="box">
-            <img src="{{ pokemon.sprites?.front_default }}" />
-          </div>
-        </div>
-      </div>
+      <app-pokemon-card
+        class="card"
+        [pokemon]="pokemon"
+        (onOpenComment)="openModalComment($event)"
+        (onOpenDetail)="openPageDetail($event)"
+        (onLike)="onLike($event)"
+      ></app-pokemon-card>
     }
   </div>
 </div>
+
+<!-- pagination -->
 @if (pokemons.length > 0 && searchMode === false) {
   <div class="pagination shadow">
     <app-pagination
@@ -52,6 +33,7 @@
   </div>
 }
 
+<!-- comment modal -->
 @if (showCommentModal && commentModalPokemon) {
   <app-comment
     [pokemon]="commentModalPokemon"

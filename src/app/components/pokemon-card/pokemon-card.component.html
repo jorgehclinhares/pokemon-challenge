@@ -1,0 +1,30 @@
+<div class="card" [appPokemonTypeClass]="pokemon.types[0].type.name">
+  <div class="card-body">
+    <div class="info">
+      <div (click)="emitOpenDetail()">
+        <span class="number">Nº{{ pokemon.order | numberPokedex: 3 }}</span>
+        <h4>{{ pokemon.name }}</h4>
+      </div>
+      <div class="comments" (click)="emitOpenComment()">
+        <span class="text-bg-light message">
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-chat-fill': pokemon.comment.message !== '',
+              'bi-chat': pokemon.comment.message === ''
+            }"
+          ></i>
+          {{ pokemon.comment.message || 'Nenhum comentário adicionado' }}
+        </span>
+        <i class="bi bi-chevron-right"></i>
+      </div>
+      <span class="like">
+        <app-like [liked]="pokemon.liked" (onLike)="emitLike()"></app-like>
+      </span>
+    </div>
+
+    <div class="box" (click)="emitOpenDetail()">
+      <img src="{{ pokemon.sprites?.front_default }}" />
+    </div>
+  </div>
+</div>

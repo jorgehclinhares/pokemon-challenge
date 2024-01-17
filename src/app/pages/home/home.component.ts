@@ -5,18 +5,15 @@ import {
   PokemonDetailResponse,
   PokemonListResult,
 } from '../../services/pokemon/pokemon';
-import { NumberPokedexPipe } from '../../pipes/number-pokedex/number-pokedex.pipe';
 import { Subject, take, takeUntil } from 'rxjs';
-import { PokemonTypeClassDirective } from '../../directives/pokemon-type-class/pokemon-type-class.directive';
 import { HeaderComponent } from '../../components/header/header/header.component';
 import { PaginationComponent } from '../../components/pagination/pagination/pagination.component';
 import { environment } from '../../../environments/environment.development';
 import { PaginationConfiguration } from '../../components/pagination/pagination/pagination';
-import { LikeComponent } from '../../components/like/like/like.component';
 import { PokemonServiceModule } from '../../services/pokemon/pokemon.service.module';
 import { Router, RouterModule } from '@angular/router';
 import { CommentComponent } from '../../components/comment/comment/comment.component';
-import { CommonModule } from '@angular/common';
+import { PokemonCardComponent } from '../../components/pokemon-card/pokemon-card.component';
 
 @Component({
   selector: 'app-home',
@@ -24,15 +21,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   imports: [
-    NumberPokedexPipe,
-    PokemonTypeClassDirective,
     HeaderComponent,
     PaginationComponent,
-    LikeComponent,
     PokemonServiceModule,
     RouterModule,
     CommentComponent,
-    CommonModule,
+    PokemonCardComponent,
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -125,9 +119,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadPokemon(page);
   }
 
-  onLike(liked: boolean, pokemon: PokemonDetail): void {
+  onLike(pokemon: PokemonDetail): void {
     const pokemonIndex = this.getPokemonByOrder(pokemon.order);
-    this.pokemons[pokemonIndex].liked = liked;
+    this.pokemons[pokemonIndex].liked = pokemon.liked;
   }
 
   searchOnChange() {
@@ -170,8 +164,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  openPageDetail(name: string): void {
-    this.router.navigateByUrl(`pokedex/${name}`);
+  openPageDetail(pokemon: PokemonDetail): void {
+    this.router.navigateByUrl(`pokedex/${pokemon.name}`);
   }
 
   openModalComment(pokemon: PokemonDetail) {
