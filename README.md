@@ -1,27 +1,121 @@
-# PokemonChallenge
+# Pokemon Challenge | Pokedex
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+Este repositório foi criado para o desafio da Pokedex da SoftPlan.
 
-## Development server
+## Visão Geral
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O objetivo deste projeto é criar uma interface front-end moderna que simula uma pokedex, utilizando os recursos mais recentes do @angular dentre outras tecnologias.
 
-## Code scaffolding
+## O desafio/objetivo
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Criar uma página web para:
 
-## Build
+- Listar os Pokémons utilizando uma API RESTful para isso. Sugerimos a seguinte API: https://pokeapi.co/docs/v2
+- Filtrar os pokémons que você deseja visualizar
+- Favoritar pokémons
+- Adicionar comentários sobre os pokémons
+- Poder visualizar detalhes do pokémon selecionado em uma modal com outra rota
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Requisitos
 
-## Running unit tests
+- [x] Utilizar a última versão do framework Angular
+- [x] Services
+- [x] Lazy loading
+- [x] Diretivas
+- [x] FormControls
+- [x] Utilizar o Bootstrap, versão 3 ou 4, como folha de estilo base
+- [x] Aplicar conhecimento de RxJS no desenvolvimento
+- [x] As informações de favoritos e comentários adicionados por um usuário devem ser salvas no estado. Utilizar o ngRx para esse controle
+- [x] Deve fazer a paginação da listagem (máximo 10 itens por página)
+- [x] Fazer teste unitários (com Jest) para todos ou componentes, services, entre outros
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Estrutura do Projeto
 
-## Running end-to-end tests
+```
+|-- .husky
+|-- src
+|   |-- app
+|   |   |-- components
+|   |   |-- directives
+|   |   |-- mocks
+|   |   |-- pages
+|   |   |-- pipes
+|   |   |-- services
+|   |   |-- state
+|   |   |-- app.routes.ts
+|   |   |-- app.config.ts
+|   |   |-- app.component.ts
+|   |   |-- ...
+|   |-- assets
+|   |-- environments
+|   |-- ...
+|-- ...
+|-- bootstrap.styles.scss
+|-- setupJest.ts
+|-- angular.json
+|-- prettierrc
+|-- tslint.json
+|-- tsconfig.app.json
+|-- tsconfig.json
+|-- tsconfig.spec.json
+|-- README.md
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Tecnologias e recursos aplicados
 
-## Further help
+- [x] @angular
+- [x] Standalone components
+- [x] Lazyload component
+- [x] @ngrx/store
+- [x] bootstrap
+- [x] ngx-bootstrap
+- [x] rxjs
+- [x] husky
+- [x] jest
+- [x] jest-html-reporter
+- [x] codelyzer
+- [x] prettier
+- [x] tslint
+- [x] typescript
+- [x] SCSS
+- [x] jQuery
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Testes
+
+- 12 suites de teste
+- 43 testes
+- 77.66% Statements
+- 82.14% Branches
+- 78% Functions
+- 76.55% Lines
+
+## Ambiente
+
+- node.js `v20.5.0`.
+- npm `9.8.0`.
+- angular/cli `17.0.10`.
+
+## Como executar o projeto
+
+1. Instale as dependências: `npm install`.
+2. Inicie o servidor de desenvolvimento: `npm start`.
+3. Abra o navegador e acesse `http://localhost:4200`.
+
+## Como executar os testes
+
+`npm test` ou `npm run test`
+
+## Como executar lint
+
+`npm run lint` ou `npm run lint:fix`
+
+## Melhorias ⌛
+
+- [] Aumentar cobertura de teste para page/component > home.component
+- [] Implementar fallbacks para requests
+- [] Implementar loading e placeholders components
+- [] Exibir comentário na tela de detalhamento do pokémon
+- [] Revisar acessibilidade do projeto com leitor de tela
+- [] Utilizar ngrx/effects
+- [] Manter objeto `pokemon` em um estado global da aplicação
+- [] Armazenar estado no localstorage com ngrx-store-localstorage ou outro
