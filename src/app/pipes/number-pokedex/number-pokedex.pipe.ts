@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { environment } from '../../../environments/environment.development';
 
 @Pipe({
   name: 'numberPokedex',
@@ -6,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NumberPokedexPipe implements PipeTransform {
   transform(value: number, length: number, padChar: string = '0'): string {
-    return value && value < 1000
+    return value && value < environment.maximumNumberForPipePokedex
       ? String(value).padStart(length, padChar)
       : String(value);
   }
