@@ -123,12 +123,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.pokemonService
       .list(offset, limit)
       .pipe(take(1))
-      .subscribe({
-        next: (response) => {
-          this.paginationConfiguration.totalItems = response.count;
-          this.loadPokemonsDetails(response.results);
-        },
-        error: (error) => console.log(error),
+      .subscribe((response) => {
+        this.paginationConfiguration.totalItems = response.count;
+        this.loadPokemonsDetails(response.results);
       });
   }
 
@@ -262,7 +259,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getPokemonByOrder(order: number) {
+  private getPokemonByOrder(order: number) {
     return this.pokemons.findIndex((item) => order === item.order);
   }
 
