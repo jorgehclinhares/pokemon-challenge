@@ -46,7 +46,9 @@ describe('DetailComponent', () => {
         },
       ],
     }).compileComponents();
-
+    pokemonServiceMock.detail.mockImplementation(() =>
+      of(pokemonDetailResponseMock),
+    );
     fixture = TestBed.createComponent(DetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -71,8 +73,6 @@ describe('DetailComponent', () => {
         message: '',
       },
     };
-
-    pokemonServiceMock.detail.mockReturnValue(of(pokemonDetailResponseMock));
 
     fixture.detectChanges();
 

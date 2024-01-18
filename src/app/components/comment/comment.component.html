@@ -1,79 +1,66 @@
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
-  #modal
->
-  <div
-    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-    role="document"
-  >
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          <i class="bi bi-chat"></i> Adicionar comentário
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="form">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Nome</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="name"
-              [ngClass]="{
-                'is-invalid': validInputName
-              }"
-            />
-            @if (validInputName) {
-              <div class="text-danger">
-                Informe um nome com pelo menos 3 caracters
-              </div>
-            }
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Comentário</label>
-            <textarea
-              class="form-control"
-              rows="3"
-              formControlName="message"
-              [ngClass]="{
-                'is-invalid': validInputMessage
-              }"
-            ></textarea>
-            @if (validInputMessage) {
-              <div class="text-danger">
-                Informe o seu comentário com pelo menos 3 caracters
-              </div>
-            }
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm" (click)="deleteComment()">
-          Excluir Comentário
-        </button>
-        <button
-          [disabled]="form.invalid"
-          type="button"
-          class="btn btn-primary btn-sm"
-          (click)="addComment()"
-        >
-          Adicionar
-        </button>
-      </div>
+<ng-template #modal>
+  <div class="modal-content" id="modal">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">
+        <i class="bi bi-chat"></i> Adicionar comentário
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            [ngClass]="{
+              'is-invalid': validInputName
+            }"
+          />
+          @if (validInputName) {
+            <div class="text-danger">
+              Informe um nome com pelo menos 3 caracters
+            </div>
+          }
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Comentário</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            formControlName="message"
+            [ngClass]="{
+              'is-invalid': validInputMessage
+            }"
+          ></textarea>
+          @if (validInputMessage) {
+            <div class="text-danger">
+              Informe o seu comentário com pelo menos 3 caracters
+            </div>
+          }
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm" (click)="deleteComment()">
+        Excluir Comentário
+      </button>
+      <button
+        [disabled]="form.invalid"
+        type="button"
+        class="btn btn-primary btn-sm"
+        (click)="addComment()"
+      >
+        Adicionar
+      </button>
     </div>
   </div>
-</div>
+</ng-template>

@@ -6,6 +6,7 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import {
@@ -16,13 +17,13 @@ import {
 } from '@angular/forms';
 import { PokemonDetail } from '../../services/pokemon/pokemon';
 import { CommonModule } from '@angular/common';
-
-declare var $: any;
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-comment',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
+  providers: [BsModalService],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.scss',
 })
@@ -31,10 +32,11 @@ export class CommentComponent implements OnInit, AfterViewInit {
   @Output() onAddComment: EventEmitter<PokemonDetail>;
   @Output() onDeleteComment: EventEmitter<PokemonDetail>;
   @Output() onModalClose: EventEmitter<any>;
-  @ViewChild('modal') modal!: ElementRef;
+  @ViewChild('modal') modal!: TemplateRef<any>;
   form: FormGroup;
+  modalRef?: BsModalRef;
 
-  constructor() {
+  constructor(private modalService: BsModalService) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       message: new FormControl('', [
@@ -61,6 +63,10 @@ export class CommentComponent implements OnInit, AfterViewInit {
     };
   }
 
+  openModal() {
+    this.modalRef = this.modalService.show(this.modal);
+  }
+
   ngOnInit(): void {
     this.inserValuesInputed();
   }
@@ -70,31 +76,19 @@ export class CommentComponent implements OnInit, AfterViewInit {
     this.monitCloseModal();
   }
 
-  openModal(): void {
-    $(this.modal.nativeElement).modal({
-      show: true,
-      focus: false,
-    });
-  }
-
   closeModal(): void {
-    $(this.modal.nativeElement).modal('hide');
+    this.modalRef?.hide();
   }
 
   monitCloseModal(): void {
-    $(this.modal.nativeElement).on('hide.bs.modal', () =>
-      this.onModalClose.emit(),
-    );
+    this.modalRef?.onHide?.subscribe(() => {
+      this.onModalClose.emit();
+    });
   }
 
   inserValuesInputed(): void {
-    if (this.pokemon.comment.name !== '') {
-      this.form.get('name')?.setValue(this.pokemon.comment.name);
-    }
-
-    if (this.pokemon.comment.message !== '') {
-      this.form.get('message')?.setValue(this.pokemon.comment.message);
-    }
+    this.form.get('name')?.setValue(this.pokemon.comment.name);
+    this.form.get('message')?.setValue(this.pokemon.comment.message);
   }
 
   addComment(): void {

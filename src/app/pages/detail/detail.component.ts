@@ -53,27 +53,25 @@ export class DetailComponent implements OnInit {
     this.pokemonService
       .detail(name)
       .pipe(take(1))
-      .subscribe({
-        next: (pokemon) => {
-          const pokemonAbilitiesText = pokemon.abilities.map(
-            (ability) => ability.ability.name,
-          );
-          this.pokemonAbilitiesText = pokemonAbilitiesText.join(' | ');
-          this.pokemon = {
-            name: pokemon.name,
-            order: pokemon.id,
-            weight: pokemon.weight,
-            height: pokemon.height,
-            abilities: pokemon.abilities,
-            types: pokemon.types,
-            sprites: pokemon.sprites,
-            favorited: false,
-            comment: {
-              name: '',
-              message: '',
-            },
-          };
-        },
+      .subscribe((pokemon) => {
+        const pokemonAbilitiesText = pokemon.abilities.map(
+          (ability) => ability.ability.name,
+        );
+        this.pokemonAbilitiesText = pokemonAbilitiesText.join(' | ');
+        this.pokemon = {
+          name: pokemon.name,
+          order: pokemon.id,
+          weight: pokemon.weight,
+          height: pokemon.height,
+          abilities: pokemon.abilities,
+          types: pokemon.types,
+          sprites: pokemon.sprites,
+          favorited: false,
+          comment: {
+            name: '',
+            message: '',
+          },
+        };
       });
   }
 }

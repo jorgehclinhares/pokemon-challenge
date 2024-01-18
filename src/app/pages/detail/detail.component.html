@@ -13,8 +13,7 @@
   <h2 class="text-body-secondary">Nº{{ pokemon.order | numberPokedex: 3 }}</h2>
   <div class="types">
     @for (type of pokemon.types; track type.slot) {
-      [
-      <span class="badge" appPokemonTypeClass]="type.type.name">
+      <span class="badge" [appPokemonTypeClass]="type.type.name">
         {{ type.type.name }}
       </span>
     }
