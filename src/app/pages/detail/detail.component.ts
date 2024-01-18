@@ -36,7 +36,7 @@ export class DetailComponent implements OnInit {
       abilities: [],
       types: [],
       sprites: undefined,
-      liked: false,
+      favorited: false,
       comment: {
         name: '',
         message: '',
@@ -67,7 +67,7 @@ export class DetailComponent implements OnInit {
             abilities: pokemon.abilities,
             types: pokemon.types,
             sprites: pokemon.sprites,
-            liked: false,
+            favorited: false,
             comment: {
               name: '',
               message: '',

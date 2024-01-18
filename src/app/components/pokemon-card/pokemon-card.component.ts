@@ -35,7 +35,7 @@ export class PokemonCardComponent {
       abilities: [],
       types: [],
       sprites: undefined,
-      liked: false,
+      favorited: false,
       comment: {
         name: '',
         message: '',
@@ -48,7 +48,7 @@ export class PokemonCardComponent {
   }
 
   emitLike(): void {
-    this.pokemon.liked = !this.pokemon.liked;
+    this.pokemon.favorited = !this.pokemon.favorited;
     this.onLike.emit(this.pokemon);
   }
 

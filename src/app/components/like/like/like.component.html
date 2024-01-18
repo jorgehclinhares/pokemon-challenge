@@ -1,8 +1,11 @@
 <button
   type="button"
   class="btn btn-primary"
-  [ngClass]="{ liked }"
+  [ngClass]="{ favorited }"
   (click)="likeOrUnlike()"
 >
-  <i class="bi" [ngClass]="{ 'bi-heart-fill': liked, 'bi-heart': !liked }"></i>
+  <i
+    class="bi"
+    [ngClass]="{ 'bi-heart-fill': favorited, 'bi-heart': !favorited }"
+  ></i>
 </button>

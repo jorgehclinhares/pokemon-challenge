@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
   onChangeMonit() {
     this.form
       .get('query')
-      ?.valueChanges.pipe(debounceTime(600), distinctUntilChanged())
+      ?.valueChanges.pipe(debounceTime(400), distinctUntilChanged())
       .subscribe((query: string) => this.emitSearch(query));
   }
 

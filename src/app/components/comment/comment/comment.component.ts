@@ -53,7 +53,7 @@ export class CommentComponent implements OnInit, AfterViewInit {
       abilities: [],
       types: [],
       sprites: undefined,
-      liked: false,
+      favorited: false,
       comment: {
         name: '',
         message: '',

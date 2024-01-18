@@ -40,7 +40,7 @@ export interface PokemonDetail {
   abilities: Ability[];
   types: Type[];
   sprites: Sprites | undefined;
-  liked: boolean;
+  favorited: boolean;
   comment: PokemonDetailComment;
 }
 

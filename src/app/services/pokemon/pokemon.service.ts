@@ -14,7 +14,8 @@ export class PokemonService {
     this.query = new Subject();
   }
 
-  list(params: any): Observable<PokemonListResponse> {
+  list(offset: number, limit: number): Observable<PokemonListResponse> {
+    const params = { offset, limit };
     return this.api.get<PokemonListResponse>(`${this.apiUrl}/pokemon`, {
       params,
     });

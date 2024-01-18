@@ -9,16 +9,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './like.component.scss',
 })
 export class LikeComponent {
-  @Input() liked: boolean;
+  @Input() favorited: boolean;
   @Output() onLike: EventEmitter<boolean>;
 
   constructor() {
-    this.liked = false;
+    this.favorited = false;
     this.onLike = new EventEmitter();
   }
 
   likeOrUnlike(): void {
-    this.liked = !this.liked;
-    this.onLike.emit(this.liked);
+    this.favorited = !this.favorited;
+    this.onLike.emit(this.favorited);
   }
 }
