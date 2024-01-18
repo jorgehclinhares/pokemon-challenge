@@ -9,75 +9,76 @@
   padding: 24px 0;
 
   &.normal {
-    background-color: $gray-600;
-    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+    background-color: $brown-200;
+    background: linear-gradient(0deg, $white 0%, $brown-200 100%);
   }
   &.fire {
-    background-color: $orange-600;
-    background: linear-gradient(0deg, $white 0%, $orange-600 100%);
+    background-color: $orange-400;
+    background: linear-gradient(0deg, $white 0%, $orange-400 100%);
   }
   &.grass {
-    background-color: $green-600;
-    background: linear-gradient(0deg, $white 0%, $green-600 100%);
+    background-color: $green-400;
+    background: linear-gradient(0deg, $white 0%, $green-400 100%);
   }
   &.water {
-    background-color: $blue-600;
-    background: linear-gradient(0deg, $white 0%, $blue-600 100%);
+    background-color: $blue-400;
+    background: linear-gradient(0deg, $white 0%, $blue-400 100%);
   }
   &.bug {
-    background-color: $teal-600;
-    background: linear-gradient(0deg, $white 0%, $teal-600 100%);
+    background-color: $teal-400;
+    background: linear-gradient(0deg, $white 0%, $teal-400 100%);
   }
   &.poison {
-    background-color: $purple-600;
-    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+    background-color: $purple-500;
+    background: linear-gradient(0deg, $white 0%, $purple-500 100%);
   }
   &.fairy {
-    background-color: $pink-600;
-    background: linear-gradient(0deg, $white 0%, $pink-600 100%);
+    background-color: $pink-400;
+    background: linear-gradient(0deg, $white 0%, $pink-400 100%);
   }
   &.psychic {
-    background-color: $pink-600;
-    background: linear-gradient(0deg, $white 0%, $pink-600 100%);
+    background-color: $pink-500;
+    background: linear-gradient(0deg, $white 0%, $pink-500 100%);
   }
   &.electric {
-    background-color: $yellow-600;
-    background: linear-gradient(0deg, $white 0%, $yellow-600 100%);
+    background-color: $yellow-400;
+    background: linear-gradient(0deg, $white 0%, $yellow-400 100%);
   }
   &.rock {
-    background-color: $gray-600;
-    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+    background-color: $gray-700;
+    background: linear-gradient(0deg, $white 0%, $gray-700 100%);
   }
   &.ice {
-    background-color: $cyan-600;
-    background: linear-gradient(0deg, $white 0%, $cyan-600 100%);
+    background-color: $cyan-400;
+    background: linear-gradient(0deg, $white 0%, $cyan-400 100%);
   }
   &.dragon {
-    background: linear-gradient(0deg, $white 0%, $indigo-600 100%);
+    background-color: $indigo-400;
+    background: linear-gradient(0deg, $white 0%, $indigo-400 100%);
   }
   &.ghost {
-    background-color: $purple-600;
-    background: linear-gradient(0deg, $white 0%, $purple-600 100%);
+    background-color: $purple-900;
+    background: linear-gradient(0deg, $white 0%, $purple-900 100%);
   }
   &.dark {
-    background-color: $gray-600;
-    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+    background-color: $gray-800;
+    background: linear-gradient(0deg, $white 0%, $gray-800 100%);
   }
   &.steel {
-    background-color: $gray-600;
-    background: linear-gradient(0deg, $white 0%, $gray-600 100%);
+    background-color: $gray-700;
+    background: linear-gradient(0deg, $white 0%, $gray-700 100%);
   }
   &.fighting {
-    background-color: $pink-600;
-    background: linear-gradient(0deg, $white 0%, $pink-600 100%);
+    background-color: $red-400;
+    background: linear-gradient(0deg, $white 0%, $red-400 100%);
   }
   &.flying {
-    background-color: $pink-600;
-    background: linear-gradient(0deg, $white 0%, $pink-600 100%);
+    background-color: $purple-300;
+    background: linear-gradient(0deg, $white 0%, $purple-300 100%);
   }
   &.ground {
-    background-color: $orange-600;
-    background: linear-gradient(0deg, $white 0%, $orange-600 100%);
+    background-color: $brown-500;
+    background: linear-gradient(0deg, $white 0%, $brown-500 100%);
   }
 
   .sprite {
@@ -107,58 +108,64 @@ h2 {
     border-radius: 24px;
 
     &.normal {
-      background-color: $gray-600;
+      background-color: $brown-200;
     }
     &.fire {
-      background-color: $orange-600;
+      background-color: $orange-400;
     }
     &.grass {
-      background-color: $green-600;
+      background-color: $green-400;
     }
     &.water {
-      background-color: $blue-600;
+      background-color: $blue-400;
     }
     &.bug {
-      background-color: $teal-600;
+      background-color: $teal-400;
     }
     &.poison {
-      background-color: $purple-600;
+      background-color: $purple-500;
     }
     &.fairy {
-      background-color: $pink-600;
+      background-color: $pink-400;
     }
     &.psychic {
-      background-color: $pink-600;
+      background-color: $pink-500;
     }
     &.electric {
-      background-color: $yellow-600;
+      background-color: $yellow-400;
     }
     &.rock {
-      background-color: $gray-600;
+      color: $white;
+      background-color: $gray-700;
     }
     &.ice {
-      background-color: $cyan-600;
+      background-color: $cyan-400;
     }
     &.dragon {
-      background-color: $indigo-600;
+      background-color: $indigo-400;
     }
     &.ghost {
-      background-color: $purple-600;
+      color: $white;
+      background-color: $purple-900;
     }
     &.dark {
-      background-color: $gray-600;
+      color: $white;
+      background-color: $gray-800;
     }
     &.steel {
+      color: $white;
       background-color: $gray-600;
     }
     &.fighting {
-      background-color: $pink-100;
+      background-color: $red-400;
     }
     &.flying {
-      background-color: $pink-600;
+      color: $white;
+      background-color: $purple-300;
     }
     &.ground {
-      background-color: $orange-600;
+      color: $white;
+      background-color: $brown-500;
     }
   }
 }

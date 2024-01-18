@@ -13,9 +13,9 @@
   }
 
   &.normal {
-    background-color: $gray-200;
+    background-color: $brown-100;
     .box {
-      background-color: $gray-400;
+      background-color: $brown-200;
     }
   }
   &.fire {
@@ -43,15 +43,21 @@
     }
   }
   &.poison {
-    background-color: $purple-100;
+    background-color: $purple-200;
     .box {
-      background-color: $purple-400;
+      background-color: $purple-500;
     }
   }
   &.fairy {
     background-color: $pink-100;
     .box {
       background-color: $pink-400;
+    }
+  }
+  &.ground {
+    background-color: $brown-200;
+    .box {
+      background-color: $brown-500;
     }
   }
   &.psychic {
@@ -67,9 +73,15 @@
     }
   }
   &.rock {
-    background-color: $gray-500;
+    background-color: $gray-600;
+
+    .number,
+    h4 {
+      color: $white !important;
+    }
+
     .box {
-      background-color: $gray-600;
+      background-color: $gray-700;
     }
   }
   &.ice {
@@ -86,32 +98,44 @@
   }
   &.ghost {
     background-color: $purple-800;
+    .number,
+    h4 {
+      color: $white !important;
+    }
     .box {
       background-color: $purple-900;
     }
   }
   &.dark {
     background-color: $gray-700;
+    .number,
+    h4 {
+      color: $white !important;
+    }
     .box {
       background-color: $gray-800;
     }
   }
   &.steel {
+    .number,
+    h4 {
+      color: $white !important;
+    }
     background-color: $gray-600;
     .box {
       background-color: $gray-700;
     }
   }
-  &.fighting {
-    background-color: $pink-100;
+  &.flying {
+    background-color: $purple-100;
     .box {
-      background-color: $pink-200;
+      background-color: $purple-300;
     }
   }
-  &.ground {
-    background-color: $orange-400;
+  &.fighting {
+    background-color: $red-200;
     .box {
-      background-color: $orange-600;
+      background-color: $red-400;
     }
   }
 
