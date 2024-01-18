@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommentComponent } from './comment.component';
-import { pokemonDetailMock } from '../../../mocks/pokemon-detail.mock';
+import { pokemonDetailMock } from '../../mocks/pokemon-detail.mock';
 
 describe('CommentComponent', () => {
   let component: CommentComponent;

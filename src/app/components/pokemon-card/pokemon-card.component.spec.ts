@@ -5,7 +5,7 @@ import { NumberPokedexPipe } from '../../pipes/number-pokedex/number-pokedex.pip
 import { PokemonTypeClassDirective } from '../../directives/pokemon-type-class/pokemon-type-class.directive';
 import { LikeComponent } from '../like/like.component';
 import { CommonModule } from '@angular/common';
-import { pokemonDetailMock } from '../../../mocks/pokemon-detail.mock';
+import { pokemonDetailMock } from '../../mocks/pokemon-detail.mock';
 import { By } from '@angular/platform-browser';
 
 describe('PokemonCardComponent', () => {
