@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PokemonCardComponent } from './pokemon-card.component';
 import { NumberPokedexPipe } from '../../pipes/number-pokedex/number-pokedex.pipe';
 import { PokemonTypeClassDirective } from '../../directives/pokemon-type-class/pokemon-type-class.directive';
-import { LikeComponent } from '../like/like/like.component';
+import { LikeComponent } from '../like/like.component';
 import { CommonModule } from '@angular/common';
 import { pokemonDetailMock } from '../../../mocks/pokemon-detail.mock';
 import { By } from '@angular/platform-browser';

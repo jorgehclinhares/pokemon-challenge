@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NumberPokedexPipe } from '../../pipes/number-pokedex/number-pokedex.pipe';
 import { PokemonTypeClassDirective } from '../../directives/pokemon-type-class/pokemon-type-class.directive';
-import { LikeComponent } from '../like/like/like.component';
+import { LikeComponent } from '../like/like.component';
 import { CommonModule } from '@angular/common';
 import { PokemonDetail } from '../../services/pokemon/pokemon';
 

@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment.development';
 import { PaginationConfiguration } from '../../components/pagination/pagination/pagination';
 import { PokemonServiceModule } from '../../services/pokemon/pokemon.service.module';
 import { Router, RouterModule } from '@angular/router';
-import { CommentComponent } from '../../components/comment/comment/comment.component';
+import { CommentComponent } from '../../components/comment/comment.component';
 import { PokemonCardComponent } from '../../components/pokemon-card/pokemon-card.component';
 import { Store } from '@ngrx/store';
 import { pokemonActions } from '../../state/pokemon/pokemon.actions';

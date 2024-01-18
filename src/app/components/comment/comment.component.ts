@@ -14,7 +14,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PokemonDetail } from '../../../services/pokemon/pokemon';
+import { PokemonDetail } from '../../services/pokemon/pokemon';
 import { CommonModule } from '@angular/common';
 
 declare var $: any;
