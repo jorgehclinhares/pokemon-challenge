@@ -11,6 +11,7 @@
     </li>
     <li
       class="page-item"
+      id="previousButton"
       [ngClass]="{ disabled: pageConfiguration.actualPage < 2 }"
       (click)="previous()"
     >
@@ -20,7 +21,7 @@
     </li>
     @for (page of pagesVisible; track $index) {
       <li
-        class="page-item"
+        class="page-item page-numbers-for-testing"
         [ngClass]="{ active: page === pageConfiguration.actualPage }"
         (click)="goToPage(page)"
       >
@@ -28,6 +29,7 @@
       </li>
     }
     <li
+      id="nextButton"
       class="page-item"
       [ngClass]="{ disabled: pageConfiguration.actualPage === totalPagesCount }"
       (click)="next()"

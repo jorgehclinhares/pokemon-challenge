@@ -13,7 +13,6 @@ export class PaginationComponent {
   @Input() set configuration(configuration: PaginationConfiguration) {
     if (configuration) {
       this.pageConfiguration = configuration;
-      this.pagesVisible = this.visiblePages();
       this.totalPagesCount = Math.ceil(this.pageConfiguration.totalItems / 10);
       this.pagesVisible = this.visiblePages();
     }
