@@ -1,0 +1,7 @@
+{
+  "extends": ["tslint:recommended", "codelyzer"],
+  "rules": {
+    "no-string-literal": false,
+    "no-shadowed-variable": false
+  }
+}

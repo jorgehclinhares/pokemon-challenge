@@ -15,7 +15,7 @@ describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
 
-  let pokemonServiceMock = {
+  const pokemonServiceMock = {
     detail: jest.fn(),
   } as unknown as jest.Mocked<PokemonService>;
 
