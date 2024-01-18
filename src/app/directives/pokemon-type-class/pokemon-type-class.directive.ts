@@ -6,7 +6,9 @@ import { Directive, ElementRef, Input } from '@angular/core';
 })
 export class PokemonTypeClassDirective {
   @Input() set appPokemonTypeClass(type: string) {
-    this.addClassname(type);
+    if (type) {
+      this.addClassname(type);
+    }
   }
 
   constructor(private elemento: ElementRef) {}

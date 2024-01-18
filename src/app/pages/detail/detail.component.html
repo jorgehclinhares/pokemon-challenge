@@ -1,12 +1,14 @@
 <div class="container">
-  <div class="box" [appPokemonTypeClass]="pokemon.types[0].type.name">
-    @if (pokemon.sprites) {
-      <img
-        src="{{ pokemon.sprites.other.home.front_default }}"
-        class="sprite"
-      />
-    }
-  </div>
+  @if (pokemon) {
+    <div class="box" [appPokemonTypeClass]="pokemon.types[0].type.name">
+      @if (pokemon.sprites) {
+        <img
+          src="{{ pokemon.sprites.other.home.front_default }}"
+          class="sprite"
+        />
+      }
+    </div>
+  }
   <h1>{{ pokemon.name }}</h1>
   <h2 class="text-body-secondary">Nº{{ pokemon.order | numberPokedex: 3 }}</h2>
   <div class="types">
