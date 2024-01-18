@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { DetailComponent } from './pages/detail/detail.component';
 
 export const routes: Routes = [
   { path: 'pokedex', component: HomeComponent },
-  { path: 'pokedex/:pokemonName', component: DetailComponent },
+  {
+    path: 'pokedex/:pokemonName',
+    loadComponent: () =>
+      import('./pages/detail/detail.component').then(
+        (mod) => mod.DetailComponent,
+      ),
+  },
   { path: '**', redirectTo: 'pokedex' },
 ];
