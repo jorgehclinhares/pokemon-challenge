@@ -1,11 +1,17 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { PokemonService } from '../../../services/pokemon/pokemon.service';
 import { PokemonServiceModule } from '../../../services/pokemon/pokemon.service.module';
 
@@ -16,8 +22,9 @@ import { PokemonServiceModule } from '../../../services/pokemon/pokemon.service.
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   @Output() onSearch: EventEmitter<string>;
+  private searchMonitDestroy: Subject<void>;
   form: FormGroup;
 
   constructor(private pokemonService: PokemonService) {
@@ -25,6 +32,7 @@ export class SearchComponent implements OnInit {
       query: new FormControl('', [Validators.minLength(3)]),
     });
     this.onSearch = new EventEmitter();
+    this.searchMonitDestroy = new Subject();
   }
 
   ngOnInit(): void {
@@ -34,7 +42,11 @@ export class SearchComponent implements OnInit {
   onChangeMonit() {
     this.form
       .get('query')
-      ?.valueChanges.pipe(debounceTime(400), distinctUntilChanged())
+      ?.valueChanges.pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        takeUntil(this.searchMonitDestroy),
+      )
       .subscribe((query: string) => this.emitSearch(query));
   }
 
@@ -43,5 +55,10 @@ export class SearchComponent implements OnInit {
       const queryCleaned = query.trim().toLocaleLowerCase();
       this.pokemonService.emitSearch(queryCleaned);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.searchMonitDestroy.next();
+    this.searchMonitDestroy.complete();
   }
 }
