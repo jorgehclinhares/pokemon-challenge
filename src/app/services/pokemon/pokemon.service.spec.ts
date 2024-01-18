@@ -33,7 +33,7 @@ describe('ApiService', () => {
 
     const req = httpController.expectOne({
       method: 'GET',
-      url: `${environment.apiURL}/pokemon`,
+      url: `${environment.apiURL}/pokemon?offset=1&limit=10`,
     });
 
     req.flush(pokemonListResponseMock);
